@@ -1,5 +1,39 @@
 'use strict';
 
+const ctx = document.getElementById('myChart');
+
+  let chartObj = {
+    type: 'bar',
+    data: {
+      labels: ['Bag','Banana','Bathroom','Boots','Breakfast','Bubblegum','Chair','Cthulhu','dogDuck','dragon','pen','petSweep','scissors', 'shark', 'sweep', 'tantrum', 'unicorn', 'waterCan', 'wineGlass'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: 'silver',
+        borderColor: 'blue'
+      }, 
+      {
+        label: '# of Views',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: 'blue',
+        borderColor: 'silver'
+      }
+    
+    ]
+
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+  new Chart(ctx, chartObj);
+
 // ***** GLOBALS ******
 let votingRounds = 0;
 let productArray = [];
