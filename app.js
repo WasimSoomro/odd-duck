@@ -36,9 +36,9 @@ function renderImgs(){
   }
     }
 
-  let imageOneIndex = indexArray.pop();
-  let imageTwoIndex = indexArray.pop();
-  let imageThreeIndex = indexArray.pop();
+  let imageOneIndex = indexArray.shift();
+  let imageTwoIndex = indexArray.shift();
+  let imageThreeIndex = indexArray.shift();
   // DONE: get 2 random images on the page
   // let imageOneIndex = randomIndexGenerator();
   // let imageTwoIndex = randomIndexGenerator();
@@ -135,6 +135,8 @@ function handleImgClick(event){
   // TODO: once voting are done, we want to remove the ability to click
   if(votingRounds === 25){
     imgContainer.removeEventListener('click', handleImgClick);
+    let stringifiedProducts = JSON.strigify(productArray);
+    localStorage.setItem('myPorducts', stringifiedProducts);
   }
 }
 
@@ -154,6 +156,12 @@ function handleShowResults(){
   }
 
 // **** EXECUTABLE CODE *****
+let retrievedProducts = localStorage.getItem('myProducts');
+let parsedProducts = JSON.parse(retrievedProducts);
+
+if(retrievedProducts){
+productArray = parsedProducts;
+} else {
 let bag = new Product('bag');
 let banana = new Product('banana');
 let bathroom = new Product('bathroom');
@@ -174,7 +182,7 @@ let waterCan = new Product('waterCan');
 let wineGlass = new Product('wineGlass');
 
 productArray.push(bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissors, shark, sweep, tantrum, waterCan, wineGlass);
-
+}
 renderImgs();
 
 imgContainer.addEventListener('click', handleImgClick);
